@@ -1,0 +1,21 @@
+<div class="cashier-dashboard">
+  <h2>Cashier Billing Panel</h2>
+
+  <table>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+    </tr>
+    <tr *ngFor="let product of products">
+      <td>{{ product.name }}</td>
+      <td>₹{{ product.price }}</td>
+    </tr>
+  </table>
+
+  <button (click)="calculateTotal()">Calculate Total</button>
+  <p>Total: ₹{{ total }}</p>
+  <button (click)="clearBilling()">Clear</button>
+
+  <br />
+  <button routerLink="/cashier-dashboard" class="btn">Back to Dashboard</button>
+</div>

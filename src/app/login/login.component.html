@@ -1,0 +1,17 @@
+<div class="login-container">
+  <div class="login-box" *ngIf="!selectedRole">
+    <h2>Welcome to T. Gopi Textiles</h2>
+    <p>Select Login Type</p>
+    <button (click)="selectRole('admin')">Admin Login</button>
+    <button (click)="selectRole('cashier')">Cashier Login</button>
+  </div>
+
+  <div class="login-box" *ngIf="selectedRole">
+    <h2>{{ selectedRole | titlecase }} Login</h2>
+    <input type="text" placeholder="User ID" [(ngModel)]="userId" />
+    <input type="password" placeholder="Password" [(ngModel)]="password" />
+    <button (click)="login()">Login</button>
+    <button (click)="selectedRole=''">Back</button>
+    <p class="note">Use admin/1234 or cashier/1234</p>
+  </div>
+</div>

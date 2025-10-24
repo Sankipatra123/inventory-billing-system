@@ -1,0 +1,33 @@
+.admin-dashboard {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+.section {
+  background: #f3e8ff;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+input {
+  margin: 5px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+button {
+  margin: 5px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  background: #5a189a;
+  color: white;
+  cursor: pointer;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 6px;
+}

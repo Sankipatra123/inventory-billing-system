@@ -1,0 +1,14 @@
+.billing-page {
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  padding: 50px;
+}
+
+.btn.logout {
+  background-color: #6a0dad;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}

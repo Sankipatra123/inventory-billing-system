@@ -1,0 +1,145 @@
+/* cashier-dashboard.component.css (FULL STYLES) */
+
+/* Ensure the main area uses a two-column layout */
+.main-sections {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.left-panel {
+    flex: 3; /* Cart and Input take more space */
+}
+
+.right-panel {
+    flex: 1; /* Totals and History */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Quick Select Buttons Styling */
+.quick-select-products {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+.quick-select-products h3 {
+    margin-top: 0;
+    color: #6a0dad;
+}
+
+.quick-select-products button {
+    background-color: #f1e4ff; /* Light violet */
+    color: #6a0dad;
+    border: 1px solid #6a0dad;
+    padding: 8px 12px;
+    margin: 5px;
+    font-size: 14px;
+}
+
+.quick-select-products button:hover {
+    background-color: #6a0dad;
+    color: white;
+}
+
+/* Total/Tender Section Styling */
+.total-tender-section {
+    padding: 15px;
+    border: 2px solid #6a0dad;
+    border-radius: 8px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.total-tender-section label {
+    font-weight: bold;
+    align-self: flex-start;
+}
+
+.total-tender-section input {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    text-align: right;
+    font-size: 18px;
+}
+
+.change-due {
+    color: green;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.change-due.negative {
+    color: red; /* Highlight negative change if logic allows (e.g., card payments) */
+}
+
+/* New Button Styles */
+.hold-btn {
+    background-color: #ffc107; /* Yellow/Orange for Hold */
+    color: #333;
+}
+
+.hold-btn:hover {
+    background-color: #e0a800;
+}
+
+.resume-btn {
+    background-color: #007bff; /* Blue for Resume */
+    padding: 6px 10px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.resume-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Held Bills Section Styling */
+.held-bills {
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+.held-bills h3 {
+    color: #333;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 5px;
+}
+
+.held-bills ul {
+    list-style: none;
+    padding: 0;
+}
+
+.held-bills li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0e0e0;
+    font-size: 14px;
+}
+
+/* Print Button Styling */
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+button:hover {
+    background-color: #45a049;
+}

@@ -1,0 +1,111 @@
+<div class="cashier-container">
+  <h2>Cashier Dashboard</h2>
+
+  <!-- Quick Select Buttons -->
+  <div class="quick-select-products">
+    <h3>Quick Add Products</h3>
+    <button *ngFor="let prod of quickProducts" (click)="addQuickProduct(prod)">
+      {{ prod.name }} (₹{{ prod.price.toFixed(2) }})
+    </button>
+  </div>
+
+  <div class="main-sections">
+    <div class="left-panel">
+      <!-- Customer Info & Payment Mode -->
+      <div class="customer-info">
+        <input type="text" placeholder="Customer Name (Optional)" [(ngModel)]="customerName" />
+        <input type="text" placeholder="Customer Phone (Optional)" [(ngModel)]="customerPhone" />
+        <select [(ngModel)]="paymentMode" (change)="cashTendered = 0; calculateChange()">
+          <option value="Cash">Cash</option>
+          <option value="Card">Card</option>
+          <option value="UPI">UPI</option>
+        </select>
+      </div>
+
+      <!-- Barcode Input -->
+      <div class="barcode-input">
+        <input type="text" placeholder="Enter or scan Product ID" [(ngModel)]="barcodeInput" (keyup.enter)="addProductByBarcode()" />
+        <button (click)="addProductByBarcode()">Add Product</button>
+      </div>
+
+      <!-- Bill Layout for Printing -->
+      <div class="bill-container">
+        <!-- Cart Table -->
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Discount (₹)</th>
+              <th>Subtotal</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cart">
+              <td>{{item.name}}</td>
+              <td>
+                <input type="number" min="1" [max]="item.quantity" [(ngModel)]="item.cartQuantity" (change)="calculateTotal()" style="width: 50px;" />
+              </td>
+              <td>₹{{item.price.toFixed(2)}}</td>
+              <td>
+                <input type="number" min="0" [max]="item.price * item.cartQuantity" [(ngModel)]="item.discount" (change)="updateCartItemDiscount(item, item.discount)" style="width: 80px;" />
+              </td>
+              <td>₹{{ (item.cartQuantity * item.price - item.discount).toFixed(2) }}</td>
+              <td>
+                <button (click)="removeCartItem(item)">Remove</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Total & Tender Section -->
+        <div class="total-tender-section">
+          <h3>Grand Total: ₹{{total.toFixed(2)}}</h3>
+
+          <ng-container *ngIf="paymentMode === 'Cash'">
+            <label for="cashTendered">Cash Tendered:</label>
+            <input type="number" id="cashTendered" min="0" placeholder="Enter Cash Amount" [(ngModel)]="cashTendered" (input)="calculateChange()" />
+            <h3 class="change-due" [class.negative]="cashTendered < total">
+              Change Due: ₹{{ (changeDue > 0 ? changeDue : 0).toFixed(2) }}
+            </h3>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Print Button -->
+      <button (click)="printBill()">🖨️ Print Bill</button>
+    </div>
+
+    <div class="right-panel">
+      <button class="finalize-btn" (click)="finalizeBill()">Finalize Bill</button>
+      <button class="hold-btn" (click)="holdBill()">Hold Bill</button>
+      <button (click)="logout()">Logout</button>
+
+      <!-- Past Bills -->
+      <div class="past-bills">
+        <h3>Past Bills (Last 5)</h3>
+        <ul>
+          <li *ngFor="let bill of bills.slice(0, 5)">
+            Bill #{{bill.id}} | ₹{{bill.total.toFixed(2)}}
+            <button (click)="viewBill(bill)">View</button>
+          </li>
+          <li *ngIf="bills.length === 0" style="color: #999;">No bills recorded yet.</li>
+        </ul>
+      </div>
+
+      <!-- Held Bills -->
+      <div class="held-bills">
+        <h3>Held Bills ({{ heldBills.length }})</h3>
+        <ul>
+          <li *ngFor="let bill of heldBills">
+            Held #{{bill.id}} ({{bill.customerName}}) | ₹{{bill.total.toFixed(2)}}
+            <button class="resume-btn" (click)="resumeBill(bill.id)">Resume</button>
+          </li>
+          <li *ngIf="heldBills.length === 0" style="color: #999;">No transactions currently on hold.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
